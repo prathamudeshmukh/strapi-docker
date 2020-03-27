@@ -13,11 +13,9 @@ jobs:
             - run: npm install
             - run: npm test
 workflows:
-  build:
-    jobs:
-      - test
   build_and_push_image:
     jobs:
+      - test
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
           aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME

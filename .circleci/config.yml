@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+  aws-ecr: circleci/aws-ecr@4.0.1
+jobs:
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
+workflows:
+  build:
+    jobs:
+      - test
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL_ENV_VAR_NAME
+          aws-access-key-id: ACCESS_KEY_ID_ENV_VAR_NAME
+          aws-secret-access-key: SECRET_ACCESS_KEY_ENV_VAR_NAME
+          context: .
+          create-repo: true
+          dockerfile: Dockerfile
+          path: ./
+          profile-name: user1
+          region: AWS_REGION_ENV_VAR_NAME
+          repo: 056385093966.dkr.ecr.us-east-1.amazonaws.com/strapi-image
+          tag: 'latest'

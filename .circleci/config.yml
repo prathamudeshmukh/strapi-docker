@@ -24,5 +24,5 @@ workflows:
           dockerfile: Dockerfile
           path: ./
           region: AWS_REGION_ENV_VAR_NAME
-          repo: 056385093966.dkr.ecr.us-east-1.amazonaws.com/strapi-image
+          repo: strapi-image
           tag: 'latest'

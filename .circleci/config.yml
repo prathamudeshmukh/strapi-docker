@@ -24,7 +24,6 @@ workflows:
           create-repo: true
           dockerfile: Dockerfile
           path: ./
-          profile-name: user1
           region: AWS_REGION_ENV_VAR_NAME
           repo: 056385093966.dkr.ecr.us-east-1.amazonaws.com/strapi-image
           tag: 'latest'
